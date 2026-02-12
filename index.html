@@ -1,0 +1,106 @@
+!DOCTYPE html>
+<html>
+<head>
+<title>Will You Be My Valentine? ❤️</title>
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(to right, #ff758c, #ff7eb3);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: white;
+}
+
+/* Container */
+.container {
+    position: relative;
+    z-index: 2;
+    margin-top: 150px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#yesBtn {
+    background-color: red;
+    color: white;
+}
+
+#noBtn {
+    background-color: white;
+    color: red;
+    position: absolute;
+}
+
+/* Floating Hearts */
+.heart {
+    position: absolute;
+    bottom: -50px;
+    font-size: 24px;
+    animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Will You Be My Valentine? 💖</h1>
+    <button id="yesBtn" onclick="yesClicked()">Yes ❤️</button>
+    <button id="noBtn">No 😢</button>
+    <h2 id="message"></h2>
+</div>
+
+<script>
+function yesClicked() {
+    document.getElementById("message").innerHTML =
+    "Yayyyyy! 💍❤️ I Love You So Much Forever 😍🌹";
+}
+
+// No button run away
+let noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", function() {
+    let x = Math.random() * (window.innerWidth - 100);
+    let y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+// Create floating hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
